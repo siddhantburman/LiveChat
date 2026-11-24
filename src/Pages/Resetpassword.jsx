@@ -60,12 +60,12 @@ const Resetpassword = () => {
   }
 
   return (
-    <div className="h-full w-full bg-[#f8f5f6] flex items-center justify-center p-6">
+    <div className="min-h-screen w-full bg-[#f4faf5] flex items-center justify-center p-4 sm:p-6">
 
-      <div className="w-full max-w-md bg-white p-6 rounded-2xl shadow-sm border border-[#eadde1]">
+      <div className="w-full max-w-md bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl shadow-lg shadow-[#a7d9b5]/20 border border-[#dcefe0]">
 
         {/* Heading */}
-        <h2 className="text-2xl font-semibold text-center mb-6 text-[#5E2D3F]">
+        <h2 className="text-xl sm:text-2xl font-semibold text-center mb-6 text-[#245c38]">
           Reset Password
         </h2>
 
@@ -74,32 +74,32 @@ const Resetpassword = () => {
 
           {/* Password */}
           <div>
-            <label className="text-sm text-[#a78b94]">New Password</label>
+            <label className="text-sm text-[#557c60]">New Password</label>
             <input
               onChange={handlepass}
               type="password"
               name="password"
               placeholder="Enter new password"
-              className="w-full mt-1 px-4 py-2 rounded-lg bg-[#fdfafb] border border-[#eadde1] focus:outline-none focus:ring-2 focus:ring-[#5E2D3F]"
+              className="w-full mt-1 px-3 sm:px-4 py-2 rounded-lg bg-[#f8fcf9] border border-[#dcefe0] focus:outline-none focus:ring-2 focus:ring-[#70c48b] focus:border-[#70c48b] text-sm text-[#245c38] placeholder:text-[#a3b9a9] transition"
             />
           </div>
 
           {/* Confirm Password */}
           <div>
-            <label className="text-sm text-[#a78b94]">Confirm Password</label>
+            <label className="text-sm text-[#557c60]">Confirm Password</label>
             <input
               onChange={handlepass}
               type="password"
               name="cpassword"
               placeholder="Confirm password"
-              className="w-full mt-1 px-4 py-2 rounded-lg bg-[#fdfafb] border border-[#eadde1] focus:outline-none focus:ring-2 focus:ring-[#5E2D3F]"
+              className="w-full mt-1 px-3 sm:px-4 py-2 rounded-lg bg-[#f8fcf9] border border-[#dcefe0] focus:outline-none focus:ring-2 focus:ring-[#70c48b] focus:border-[#70c48b] text-sm text-[#245c38] placeholder:text-[#a3b9a9] transition"
             />
           </div>
 
           {/* Change Password */}
           <button
             onClick={changepassword}
-            className="mt-3 bg-[#5E2D3F] hover:opacity-90 text-white py-2 rounded-lg transition"
+            className="mt-3 bg-[#70c48b] hover:bg-[#55ad72] text-white font-medium py-2.5 rounded-lg transition duration-200 text-sm shadow-md shadow-[#70c48b]/20"
           >
             Change Password
           </button>
@@ -107,7 +107,7 @@ const Resetpassword = () => {
           {/* Delete Account */}
           <button
             onClick={deleteAccount}
-            className="mt-2 bg-[#f3e7eb] hover:bg-[#eadde1] text-[#5E2D3F] py-2 rounded-lg transition"
+            className="mt-2 bg-[#e8f5eb] hover:bg-[#d8eddd] text-[#245c38] font-medium py-2.5 rounded-lg transition duration-200 text-sm border border-[#dcefe0]"
           >
             Delete Account
           </button>

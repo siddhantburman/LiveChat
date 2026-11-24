@@ -1,135 +1,140 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { FaUserAlt, FaLock } from "react-icons/fa"; 
+import { FaUserAlt, FaLock } from "react-icons/fa";
 
 const Login = () => {
 
-let redirect = useNavigate()
+  let redirect = useNavigate()
 
-const [login, setLogin] = useState({
-  username: "",
-  password: ""
-})
-
-let handlelogin = async () => {
-
-  let loginData = {
-    email: login.username,
-    password: login.password
-  }
-
-  let resp = await fetch("https://api.skillsvarz.com/api/login", {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(loginData)
+  const [login, setLogin] = useState({
+    username: "",
+    password: ""
   })
 
-  let res = await resp.json()
+  let handlelogin = async () => {
 
-  if(resp.status === 200 || resp.status === 201) { 
-    localStorage.setItem("user_id", JSON.stringify(res.user._id))
-    localStorage.setItem("user_token", JSON.stringify(res.token))
+    let loginData = {
+      email: login.username,
+      password: login.password
+    }
 
-    toast.success(res.message)
-    setTimeout(()=>{
-      redirect("/user")
-    },1000)
-  } else {
-    toast.error(res.error)
+    let resp = await fetch("https://api.skillsvarz.com/api/login", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(loginData)
+    })
+
+    let res = await resp.json()
+
+    if (resp.status === 200 || resp.status === 201) {
+      localStorage.setItem("user_id", JSON.stringify(res.user._id))
+      localStorage.setItem("user_token", JSON.stringify(res.token))
+
+      toast.success(res.message)
+      setTimeout(() => {
+        redirect("/user")
+      }, 1000)
+    } else {
+      toast.error(res.error)
+    }
   }
-}
 
-return (
-  <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-[#dac0c9] to-[#dbabbd]">
+  return (
+    <div className="min-h-screen flex items-center justify-center px-4 py-6 bg-gradient-to-br from-[#e8f5eb] to-[#ccebd4]">
 
-    {/* Main Card */}
-    <div className="w-full max-w-4xl bg-white rounded-2xl md:rounded-3xl shadow-2xl flex flex-col md:flex-row overflow-hidden">
+      {/* Main Card */}
+      <div className="w-full max-w-4xl bg-white rounded-2xl md:rounded-3xl shadow-2xl shadow-[#70c48b]/20 flex flex-col md:flex-row overflow-hidden border border-[#dcefe0]">
 
-      {/* LEFT SIDE (Hidden on small screens) */}
-      <div className="hidden md:flex md:w-1/2 bg-gradient-to-br from-[#5E2D3F] to-[#a15c74] flex-col justify-center items-center text-white relative p-6">
+        {/* LEFT SIDE (Hidden on small screens) */}
+        <div className="hidden md:flex md:w-1/2 bg-gradient-to-br from-[#70c48b] to-[#388b55] flex-col justify-center items-center text-white relative p-6 overflow-hidden">
 
-        <h2 className="text-2xl lg:text-3xl font-bold mb-2 text-center">
-          Welcome Back
-        </h2>
-        <p className="text-sm opacity-80 text-center">
-          Login to continue your journey
-        </p>
+          <h2 className="text-2xl lg:text-3xl font-bold mb-2 text-center relative z-10">
+            Welcome Back
+          </h2>
 
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-white opacity-10 rounded-t-full"></div>
-      </div>
+          <p className="text-sm text-center text-white/85 relative z-10">
+            Login to continue your journey
+          </p>
 
-      {/* RIGHT SIDE */}
-      <div className="w-full md:w-1/2 flex flex-col justify-center px-6 sm:px-8 md:px-10 py-8">
+          <div className="absolute bottom-0 left-0 w-full h-32 bg-white/10 rounded-t-full"></div>
 
-        <h2 className="text-xl sm:text-2xl font-bold text-[#5E2D3F] mb-6 text-center">
-          Login
-        </h2>
+          <div className="absolute top-10 right-10 w-32 h-32 bg-white/10 rounded-full"></div>
+          <div className="absolute bottom-20 left-8 w-20 h-20 bg-white/10 rounded-full"></div>
 
-        {/* Email */}
-        <div className="mb-4 flex items-center border-b border-gray-300">
-          <FaUserAlt className="text-[#5E2D3F] mr-2 text-sm" />
-          <input
-            type="text"
-            placeholder="Email"
-            className="w-full p-2 text-sm focus:outline-none"
-            onChange={(e)=> setLogin({...login, username: e.target.value})}
-          />
         </div>
 
-        {/* Password */}
-        <div className="mb-2 flex items-center border-b border-gray-300">
-          <FaLock className="text-[#5E2D3F] mr-2 text-sm" />
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full p-2 text-sm focus:outline-none"
-            onChange={(e)=> setLogin({...login, password: e.target.value})}
-          />
-        </div>
+        {/* RIGHT SIDE */}
+        <div className="w-full md:w-1/2 flex flex-col justify-center px-6 sm:px-8 md:px-10 py-8">
 
-        {/* Forgot */}
-        <div className="text-right mb-4">
-          <Link 
-            to="/forget-password" 
-            className="text-xs sm:text-sm text-[#5E2D3F] hover:underline"
+          <h2 className="text-xl sm:text-2xl font-bold text-[#245c38] mb-6 text-center">
+            Login
+          </h2>
+
+          {/* Email */}
+          <div className="mb-4 flex items-center border-b border-[#dcefe0] focus-within:border-[#70c48b] transition">
+            <FaUserAlt className="text-[#70c48b] mr-2 text-sm" />
+            <input
+              type="text"
+              placeholder="Email"
+              className="w-full p-2 text-sm text-[#245c38] placeholder:text-[#a3b9a9] focus:outline-none"
+              onChange={(e) => setLogin({ ...login, username: e.target.value })}
+            />
+          </div>
+
+          {/* Password */}
+          <div className="mb-2 flex items-center border-b border-[#dcefe0] focus-within:border-[#70c48b] transition">
+            <FaLock className="text-[#70c48b] mr-2 text-sm" />
+            <input
+              type="password"
+              placeholder="Password"
+              className="w-full p-2 text-sm text-[#245c38] placeholder:text-[#a3b9a9] focus:outline-none"
+              onChange={(e) => setLogin({ ...login, password: e.target.value })}
+            />
+          </div>
+
+          {/* Forgot */}
+          <div className="text-right mb-4">
+            <Link
+              to="/forget-password"
+              className="text-xs sm:text-sm text-[#55ad72] hover:text-[#245c38] hover:underline transition"
+            >
+              Forgot Password?
+            </Link>
+          </div>
+
+          {/* Button */}
+          <button
+            onClick={handlelogin}
+            className="w-full bg-[#70c48b] hover:bg-[#55ad72] text-white font-semibold py-2.5 rounded-full transition-all duration-300 shadow-md shadow-[#70c48b]/25 text-sm"
           >
-            Forgot Password?
-          </Link>
+            LOGIN
+          </button>
+
+          {/* Divider */}
+          <div className="flex items-center my-4">
+            <hr className="flex-grow border-[#dcefe0]" />
+            <span className="px-2 text-[#a3b9a9] text-xs sm:text-sm">OR</span>
+            <hr className="flex-grow border-[#dcefe0]" />
+          </div>
+
+          {/* Signup */}
+          <p className="text-center text-xs sm:text-sm text-[#789783]">
+            Don’t have an account?{" "}
+            <Link
+              to="/signup"
+              className="text-[#55ad72] font-semibold hover:text-[#245c38] hover:underline transition"
+            >
+              Sign Up
+            </Link>
+          </p>
+
         </div>
-
-        {/* Button */}
-        <button
-          onClick={handlelogin}
-          className="w-full bg-[#5E2D3F] hover:bg-[#4a2332] text-white py-2.5 rounded-full transition-all duration-300 shadow-md text-sm"
-        >
-          LOGIN
-        </button>
-
-        {/* Divider */}
-        <div className="flex items-center my-4">
-          <hr className="flex-grow border-gray-300" />
-          <span className="px-2 text-gray-400 text-xs sm:text-sm">OR</span>
-          <hr className="flex-grow border-gray-300" />
-        </div>
-
-        {/* Signup */}
-        <p className="text-center text-xs sm:text-sm text-gray-500">
-          Don’t have an account?{" "}
-          <Link 
-            to="/signup" 
-            className="text-[#5E2D3F] font-medium hover:underline"
-          >
-            Sign Up
-          </Link>
-        </p>
-
       </div>
     </div>
-  </div>
-)
+  )
 }
 
 export default Login
